@@ -157,13 +157,19 @@ export default function EventsPage() {
                     Unleash your coding potential in our latest challenge. Join us for a deep dive into algorithmic mastery and system design.
                   </p>
 
-                  <div className="flex flex-wrap gap-4 mb-8">
+                  <div className="flex flex-wrap gap-4 mb-6">
                     <div className="flex items-center gap-2 text-sm text-gray-400">
-                      <span className="bg-white/10 p-2 rounded-lg">📅</span> Date: TBA
+                      <span className="bg-white/10 p-2 rounded-lg">📅</span> Date: 7th Feb 2026
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-400">
-                      <span className="bg-white/10 p-2 rounded-lg">📍</span> Location: TBA
+                      <span className="bg-white/10 p-2 rounded-lg">📍</span> Location: Plot 15, NIET
                     </div>
+                  </div>
+
+                  <div className="mb-8 p-3 bg-red-500/10 border border-red-500/20 rounded-lg inline-block">
+                    <p className="text-red-400 text-sm font-medium">
+                      ⚠️ Exclusive for IoT + Biotech Branch Only
+                    </p>
                   </div>
 
                   <Button size="lg" className="w-fit">
