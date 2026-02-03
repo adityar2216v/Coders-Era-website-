@@ -18,9 +18,7 @@ export const LogoTicker = () => {
 
     return (
         <div className="py-12 bg-black/20 border-y border-white/5 overflow-hidden">
-            <div className="container mx-auto px-4 mb-6 text-center">
-                <p className="text-sm text-gray-500 uppercase tracking-widest font-medium">Trusted by developers from</p>
-            </div>
+
             <div className="flex overflow-hidden relative w-full">
                 <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
                 <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[var(--background)] to-transparent z-10" />

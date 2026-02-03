@@ -74,7 +74,7 @@ export function IntroVideo({ onComplete }: IntroVideoProps) {
                     <video
                         ref={videoRef}
                         src="/Cinematic_Tech_Logo_Intro_Generation.mp4"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain lg:object-cover"
                         // Removed autoPlay to manual control
                         playsInline
                         onEnded={handleVideoEnd}
