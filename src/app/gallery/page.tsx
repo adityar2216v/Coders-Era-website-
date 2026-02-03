@@ -95,7 +95,7 @@ export default function GalleryPage() {
                 </Container>
             </Section>
 
-            {/* Codesphere Section - 3D Carousel */}
+            {/* Codesphere Section - 1st Event */}
             <Section className="py-12 bg-white/[0.02] border-y border-white/5">
                 <Container>
                     <motion.div
@@ -104,23 +104,29 @@ export default function GalleryPage() {
                         className="mb-8 flex items-center gap-4"
                     >
                         <div className="h-12 w-1 bg-primary rounded-full" />
-                        <h2 className="text-3xl md:text-5xl font-bold text-white">Codesphere <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">Chronicles</span></h2>
+                        <div>
+                            <span className="text-primary text-sm font-bold tracking-wider uppercase block mb-1">1st Event</span>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white">Codesphere <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">Chronicles</span></h2>
+                        </div>
                     </motion.div>
 
-                    {/* Duplicating image for demo purpose since we have single image per event. In real app, unique images per event. */}
                     <ThreeDCarousel
                         images={[
-                            '/photos/codesphere.jpeg',
-                            '/photos/hackathon.jpeg',
-                            '/photos/aditya.jpg',
-                            '/photos/logo.jpg'
+                            '/codesphere/c1.jpg',
+                            '/codesphere/c2.jpg',
+                            '/codesphere/c3.jpg',
+                            '/codesphere/c4.jpg',
+                            '/codesphere/c5.jpg',
+                            '/codesphere/c6.jpg',
+                            '/codesphere/c7.jpg',
+                            '/codesphere/c8.JPG',
                         ]}
                         height="500px"
                     />
                 </Container>
             </Section>
 
-            {/* Autonomous Minds Section - 3D Carousel */}
+            {/* Code Cascade Section - 2nd Event */}
             <Section className="py-24">
                 <Container>
                     <motion.div
@@ -128,16 +134,49 @@ export default function GalleryPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         className="mb-8 flex items-center justify-end gap-4 text-right"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold text-white"><span className="text-primary">Autonomous</span> Minds</h2>
-                        <div className="h-12 w-1 bg-primary rounded-full" />
+                        <div>
+                            <span className="text-secondary text-sm font-bold tracking-wider uppercase block mb-1">2nd Event</span>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white">The Code <span className="text-secondary">Cascade</span></h2>
+                        </div>
+                        <div className="h-12 w-1 bg-secondary rounded-full" />
                     </motion.div>
 
                     <ThreeDCarousel
                         images={[
-                            '/photos/autonomous Minds Launchpad.jpg',
-                            '/photos/ai.jpeg',
-                            '/photos/cys.jpeg',
+                            '/code cascade.png',
+                            '/photos/hackathon.jpeg',
+                            '/photos/web.jpeg',
+                            '/photos/app.jpeg',
                             '/photos/cloud.jpeg'
+                        ]}
+                        height="500px"
+                    />
+                </Container>
+            </Section>
+
+            {/* Autonomous Minds Section - 3rd Event */}
+            <Section className="py-12 bg-white/[0.02] border-y border-white/5">
+                <Container>
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="mb-8 flex items-center gap-4"
+                    >
+                        <div className="h-12 w-1 bg-purple-500 rounded-full" />
+                        <div>
+                            <span className="text-purple-500 text-sm font-bold tracking-wider uppercase block mb-1">3rd Event</span>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white"><span className="text-purple-500">Autonomous</span> Minds</h2>
+                        </div>
+                    </motion.div>
+
+                    <ThreeDCarousel
+                        images={[
+                            '/autonomous minds/a1.jpg',
+                            '/autonomous minds/a2.jpg',
+                            '/autonomous minds/a3.jpg',
+                            '/autonomous minds/a4.jpg',
+                            '/autonomous minds/a5.jpg',
+                            '/autonomous minds/a6.jpg',
                         ]}
                         height="500px"
                     />
