@@ -24,11 +24,11 @@ const HeroSection = () => {
         {/* Left: Logo */}
         <div className="relative z-10 flex justify-center items-center w-full md:w-1/2 p-4">
           <Image
-            src="/rlogo.png"
+            src="/logo.png"
             alt="Coders ERA Logo"
-            width={320}
-            height={320}
-            className="w-56 h-56 md:w-80 md:h-80 object-contain rounded-2xl shadow-xl animate-hero-pulse"
+            width={400}
+            height={400}
+            className="w-64 h-auto md:w-96 object-contain rounded-2xl animate-hero-pulse"
             style={{ maxWidth: '100%', height: 'auto' }}
             priority
           />

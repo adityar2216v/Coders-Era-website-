@@ -1,6 +1,7 @@
 'use client';
 import { BsTwitterX, BsGithub, BsLinkedin, BsInstagram } from "react-icons/bs";
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/Button";
 
@@ -26,8 +27,13 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-4 lg:col-span-5">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center text-white font-bold text-lg">C</div>
-              <span className="text-2xl font-bold text-white tracking-tight">CodersEra</span>
+              <Image
+                src="/logo.png"
+                alt="CodersEra Logo"
+                width={150}
+                height={40}
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="text-gray-400 mb-8 max-w-sm leading-relaxed text-lg font-light">
               Where developers become innovators. Join the community building the future of tech, one line of code at a time.

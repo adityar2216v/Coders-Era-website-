@@ -104,28 +104,30 @@ const TeamMemberCard = ({ member, index }: { member: TeamMember, index: number }
         src={member.img}
         alt={member.name}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
         onError={(e) => { e.currentTarget.src = '/photos/logo.jpg'; }}
       />
 
-      {/* Social Overlay */}
-      <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20 flex justify-center gap-4 bg-gradient-to-t from-black/80 to-transparent pt-10">
-        {member.linkedin && member.linkedin !== '#' && (
-          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-primary hover:text-white transition-colors text-white backdrop-blur-sm">
-            <BsLinkedin />
-          </a>
-        )}
-        {member.instagram && member.instagram !== '#' && (
-          <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-pink-600 hover:text-white transition-colors text-white backdrop-blur-sm">
-            <BsInstagram />
-          </a>
-        )}
-      </div>
+
     </div>
 
     <div className="text-center p-4">
       <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors duration-300">{member.name}</h3>
       <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mt-1">{member.position}</p>
+
+      {/* Social Buttons Below */}
+      <div className="flex justify-center gap-4 mt-4">
+        {member.linkedin && member.linkedin !== '#' && (
+          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-primary hover:text-white transition-all text-white/70 hover:scale-110">
+            <BsLinkedin />
+          </a>
+        )}
+        {member.instagram && member.instagram !== '#' && (
+          <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-pink-600 hover:text-white transition-all text-white/70 hover:scale-110">
+            <BsInstagram />
+          </a>
+        )}
+      </div>
     </div>
   </Card>
 );

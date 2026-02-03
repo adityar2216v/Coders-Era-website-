@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Menu, X, Github, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
@@ -47,12 +48,13 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300">
-              C
-            </div>
-            <span className="font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
-              CodersEra
-            </span>
+            <Image
+              src="/logo.png"
+              alt="CodersEra Logo"
+              width={150}
+              height={40}
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -117,8 +119,13 @@ export default function Header() {
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
                 <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center text-white font-bold">C</div>
-                  <span className="font-bold text-xl text-white">CodersEra</span>
+                  <Image
+                    src="/logo.png"
+                    alt="CodersEra Logo"
+                    width={120}
+                    height={32}
+                    className="h-8 w-auto object-contain"
+                  />
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}

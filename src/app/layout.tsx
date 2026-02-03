@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "CodersEra | Where Developers Become Innovators",
   description: "Join the ultimate tech community for developers, innovators, and creators. Build the future with CodersEra.",
   icons: {
-    icon: "/logo.jpg",
+    icon: "/logo.png",
   },
 };
 

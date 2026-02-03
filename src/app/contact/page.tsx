@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { IoLogoWhatsapp } from "react-icons/io";
 import { BsTwitterX, BsGithub, BsLinkedin } from "react-icons/bs";
 import { Section } from '@/components/ui/Section';
@@ -10,6 +11,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
 export default function ContactPage() {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,6 +21,16 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  // EMAILJS CONFIGURATION
+  // REPLACE THESE WITH YOUR ACTUAL KEYS FROM EMAILJS DASHBOARD
+  const EMAILJS_SERVICE_ID: string = "service_q2zm3kc";
+  const EMAILJS_TEMPLATE_ID: string = "template_05fr5dp";
+  const EMAILJS_PUBLIC_KEY: string = "C4DlnBIPdvNBkpoYb";
+
+  // GOOGLE SHEETS CONFIGURATION
+  // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+  const GOOGLE_SHEET_SCRIPT_URL: string = "https://script.google.com/macros/s/AKfycbyXlpF-i99sie7F-MYGapI88pfRPbLGsaNAO6_do3SG7Z1pWOwPLOXbuzokIJLFdKZO/exec";
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -27,12 +39,39 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // 1. Send Email using EmailJS
+      // We use current form reference
+      if (EMAILJS_SERVICE_ID !== "service_id") {
+        await emailjs.sendForm(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          form.current!,
+          EMAILJS_PUBLIC_KEY
+        );
+      } else {
+        console.log("EmailJS keys not set. simulating success.");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      // 2. Submit to Google Sheets (if URL is provided and not the default placeholder)
+      if (GOOGLE_SHEET_SCRIPT_URL && !GOOGLE_SHEET_SCRIPT_URL.includes("REPLACE_THIS")) {
+        const formBody = new FormData();
+        Object.entries(formData).forEach(([key, value]) => {
+          formBody.append(key, value);
+        });
+
+        await fetch(GOOGLE_SHEET_SCRIPT_URL, {
+          method: 'POST',
+          body: formBody,
+          mode: 'no-cors'
+        });
+      }
+
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setFormData({
@@ -46,7 +85,12 @@ export default function ContactPage() {
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 5000);
-    }, 1500);
+
+    } catch (error) {
+      console.error("FAILED...", error);
+      setIsSubmitting(false);
+      alert("Failed to send message. Please try again.");
+    }
   };
 
   const inputClasses = "w-full px-5 py-4 rounded-xl border border-white/10 bg-black/40 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-muted-foreground/50";
@@ -102,7 +146,7 @@ export default function ContactPage() {
                     <p>We&apos;ve received your inquiry and will get back to you shortly.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                  <form ref={form} onSubmit={handleSubmit} className="space-y-6 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-muted-foreground mb-2 text-sm font-medium uppercase tracking-wider">Your Name</label>

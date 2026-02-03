@@ -143,7 +143,7 @@ export default function EventsPage() {
 
                 {/* Content Section */}
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative z-20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-20" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-20 pointer-events-none" />
 
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider w-fit mb-6">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
@@ -178,7 +178,7 @@ export default function EventsPage() {
                       href="https://docs.google.com/forms/d/e/1FAIpQLSetSrV3-IEeOlwCHwtsHMjvXaWuRkNXvm4LtRiwual96mVnQw/viewform?usp=publish-editor"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-all hover:scale-105"
+                      className="relative z-10 inline-flex items-center justify-center px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-all hover:scale-105"
                     >
                       Register Now <ArrowRight className="ml-2 w-4 h-4" />
                     </a>
