@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+
 import { Card } from '@/components/ui/Card';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
@@ -33,7 +33,7 @@ export const Testimonials = () => {
             <Container>
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">What people are <span className="text-gradient-primary">saying</span></h2>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Don't just take our word for it. Hear from the community.</p>
+                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Don&apos;t just take our word for it. Hear from the community.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -44,7 +44,7 @@ export const Testimonials = () => {
                                     <span key={star} className="text-yellow-500 text-lg">★</span>
                                 ))}
                             </div>
-                            <p className="text-gray-300 text-lg mb-8 italic">"{item.content}"</p>
+                            <p className="text-gray-300 text-lg mb-8 italic">&quot;{item.content}&quot;</p>
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-full overflow-hidden bg-white/10 relative">
                                     <Image src={item.img} alt={item.author} fill className="object-cover" />
