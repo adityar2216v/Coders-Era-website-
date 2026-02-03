@@ -27,11 +27,11 @@ export default function Footer() {
           <div className="md:col-span-4 lg:col-span-5">
             <Link href="/" className="flex items-center gap-2 mb-6">
               <Image
-                src="/logo.png"
+                src="/codersera-logo.png"
                 alt="CodersEra Logo"
-                width={150}
-                height={40}
-                className="h-10 w-auto object-contain"
+                width={180}
+                height={50}
+                className="h-12 w-auto object-contain"
               />
             </Link>
             <p className="text-gray-400 mb-8 max-w-sm leading-relaxed text-lg font-light">

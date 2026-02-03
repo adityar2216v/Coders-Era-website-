@@ -49,11 +49,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <Image
-              src="/logo.png"
+              src="/codersera-logo.png"
               alt="CodersEra Logo"
-              width={150}
-              height={40}
-              className="h-10 w-auto object-contain"
+              width={180}
+              height={50}
+              className="h-12 w-auto object-contain"
             />
           </Link>
 
