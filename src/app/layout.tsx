@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google"; // Updated fonts
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
-{/* BackgroundAnimation removed */ }
+import { AnnouncementBanner } from "@/components/layout/AnnouncementBanner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "CodersEra - Tech Community",
-  description: "A tech community for networking, learning, and collaboration",
+  title: "CodersEra | Where Developers Become Innovators",
+  description: "Join the ultimate tech community for developers, innovators, and creators. Build the future with CodersEra.",
   icons: {
     icon: "/logo.jpg",
   },
@@ -30,9 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden`}
       >
         <ThemeProvider
           attribute="class"
@@ -40,9 +42,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-
-          <Header />
-          <main className="flex-grow">{children}</main>
+          <div className="flex-grow relative z-10">
+            <AnnouncementBanner />
+            <Header />
+            {children}
+          </div>
           <Footer />
         </ThemeProvider>
       </body>

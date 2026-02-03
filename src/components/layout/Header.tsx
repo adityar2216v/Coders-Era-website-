@@ -1,9 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Github, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -16,31 +19,58 @@ const navItems = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      {/* Desktop Header */}
       <motion.header
-        className="hidden md:flex sticky top-4 z-50 mx-auto justify-center items-center"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        className={cn(
+          "fixed top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-7xl rounded-full transition-all duration-300",
+          isScrolled
+            ? "bg-black/40 backdrop-blur-xl border border-white/10 shadow-lg shadow-purple-500/5 py-3 px-6"
+            : "bg-transparent py-5 px-6"
+        )}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="bg-black/30 backdrop-blur-md rounded-full border border-white/10 px-8 py-4 shadow-lg shadow-black/20 flex items-center space-x-1">
-          <nav className="flex space-x-2">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300">
+              C
+            </div>
+            <span className="font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
+              CodersEra
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1 bg-white/5 rounded-full px-2 py-1 border border-white/5 backdrop-blur-sm">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                  className={cn(
+                    "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                    isActive ? "text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                  )}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-white/10 rounded-full"
+                      className="absolute inset-0 bg-primary/20 rounded-full border border-primary/30"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
@@ -50,39 +80,104 @@ export default function Header() {
               );
             })}
           </nav>
+
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link href="https://github.com/codersera-adi" target="_blank">
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/10 text-gray-400 hover:text-white">
+                <Github className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Button variant="primary" size="sm" className="hidden lg:flex" onClick={() => window.open('https://chat.whatsapp.com/IZFWh2YhwNh1Hzl5GDci2F', '_blank')}>
+              Join Community
+            </Button>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
         </div>
       </motion.header>
 
-      {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/50 border-b border-white/10 flex items-center justify-between px-6 h-16 shadow-lg">
-        <span className="text-xl font-bold text-white tracking-wide bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">CodersEra</span>
-        <button
-          className='flex flex-col justify-center items-center w-10 h-10 focus:outline-none'
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-6 h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-          <span className={`block w-6 h-0.5 bg-white my-1 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`block w-6 h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-        </button>
-      </div>
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-3xl md:hidden overflow-y-auto"
+          >
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-8">
+                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
+                  <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center text-white font-bold">C</div>
+                  <span className="font-bold text-xl text-white">CodersEra</span>
+                </Link>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 rounded-full bg-white/5 text-gray-400 hover:text-white"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
 
-      {/* Mobile Menu */}
-      <div className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} z-40 flex flex-col items-center justify-center`}>
-        <div className='flex flex-col items-center gap-8 text-2xl font-light tracking-wider'>
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              href={item.path}
-              className={`${pathname === item.path ? 'text-blue-400 font-bold' : 'text-white'} hover:text-blue-400 transition-colors`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          <a href='https://chat.whatsapp.com/IZFWh2YhwNh1Hzl5GDci2F' target="_blank" rel="noopener noreferrer" className="px-6 py-2 bg-green-500/20 text-green-400 border border-green-500/50 rounded-full text-lg mt-4" >Whatsapp Community</a>
-        </div>
-      </div>
+              <div className="flex flex-col gap-6 ">
+                {navItems.map((item, idx) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.05 }}
+                  >
+                    <Link
+                      href={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        "flex items-center justify-between text-2xl font-medium border-b border-white/5 pb-4",
+                        pathname === item.path ? "text-primary border-primary/50" : "text-gray-400"
+                      )}
+                    >
+                      {item.name}
+                      <ChevronRight className={cn("h-5 w-5", pathname === item.path ? "text-primary" : "text-gray-600")} />
+                    </Link>
+                  </motion.div>
+                ))}
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-8 flex flex-col gap-4"
+                >
+                  <Button
+                    className="w-full justify-center py-6 text-lg"
+                    variant="primary"
+                    onClick={() => {
+                      window.open('https://chat.whatsapp.com/IZFWh2YhwNh1Hzl5GDci2F', '_blank');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Join WhatsApp Community
+                  </Button>
+
+                  <div className="flex gap-4 justify-center mt-4">
+                    {/* Socials placeholder */}
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400">
+                      <Github className="h-5 w-5" />
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
