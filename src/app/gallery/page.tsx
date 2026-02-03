@@ -123,6 +123,7 @@ export default function GalleryPage() {
                             '/codesphere/c8.JPG',
                         ]}
                         height="500px"
+                        autoScrollInterval={2000}
                     />
                 </Container>
             </Section>
@@ -144,13 +145,16 @@ export default function GalleryPage() {
 
                     <ThreeDCarousel
                         images={[
-                            '/code cascade.png',
-                            '/photos/hackathon.jpeg',
-                            '/photos/web.jpeg',
-                            '/photos/app.jpeg',
-                            '/photos/cloud.jpeg'
+                            '/code cascade/IMG-20250907-WA0036.jpg',
+                            '/code cascade/IMG-20250907-WA0040.jpg',
+                            '/code cascade/IMG_20250906_110712884.jpg',
+                            '/code cascade/IMG_3358.JPG',
+                            '/code cascade/IMG_3394.JPG',
+                            '/code cascade/IMG_3574.JPG',
+                            '/code cascade/IMG_3632.JPG'
                         ]}
                         height="500px"
+                        autoScrollInterval={2000}
                     />
                 </Container>
             </Section>
@@ -181,6 +185,7 @@ export default function GalleryPage() {
                             '/autonomous minds/a6.jpg',
                         ]}
                         height="500px"
+                        autoScrollInterval={2000}
                     />        </Container>
             </Section>
 
