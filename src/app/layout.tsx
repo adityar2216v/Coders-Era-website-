@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { AnnouncementBanner } from "@/components/layout/AnnouncementBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,7 +42,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex-grow relative z-10">
-            <AnnouncementBanner />
             <Header />
             {children}
           </div>
