@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
-
+import { LogoTicker } from '@/components/common/LogoTicker';
 import { Testimonials } from '@/components/common/Testimonials';
 
 export default function Home() {
@@ -122,7 +122,7 @@ export default function Home() {
           </Section>
 
           {/* PARTNERS TICKER */}
-
+          <LogoTicker />
 
 
 

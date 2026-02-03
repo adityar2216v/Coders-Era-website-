@@ -121,12 +121,13 @@ export default function Header() {
               <div className="flex items-center justify-between mb-8">
                 <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
                   <Image
-                    src="/logo.png"
+                    src="/codersera-logo-original.jpg"
                     alt="CodersEra Logo"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto object-contain"
+                    width={60}
+                    height={60}
+                    className="h-10 w-auto object-contain rounded-full"
                   />
+                  <span className="font-bold text-xl tracking-tight text-white">CodersEra</span>
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
