@@ -55,6 +55,18 @@ export function IntroVideo({ onComplete }: IntroVideoProps) {
         };
     }, []);
 
+    // Prevent scrolling while playing
+    useEffect(() => {
+        if (isPlaying) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isPlaying]);
+
     const handleVideoEnd = () => {
         setIsPlaying(false);
         setTimeout(() => {
