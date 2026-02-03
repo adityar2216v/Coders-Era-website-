@@ -20,9 +20,6 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "CodersEra | Where Developers Become Innovators",
   description: "Join the ultimate tech community for developers, innovators, and creators. Build the future with CodersEra.",
-  icons: {
-    icon: "/codersera-logo-original.jpg",
-  },
 };
 
 export default function RootLayout({
