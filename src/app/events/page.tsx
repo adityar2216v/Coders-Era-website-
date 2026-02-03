@@ -219,15 +219,33 @@ export default function EventsPage() {
               }
             ].map((event, i) => (
               <Card key={i} hoverEffect className="p-0 overflow-hidden group flex flex-col h-full rounded-2xl border-white/10">
-                <div className="relative aspect-video w-full overflow-hidden">
-                  {/* Using simple img tag to avoid Next.js Image config issues with external/local paths dynamically if unconfigured */}
+                <div className="relative aspect-video w-full overflow-hidden bg-gray-900">
+                  {/* Layer 1: Blurred Background (for aesthetic fill) */}
+                  <img
+                    src={event.image}
+                    alt="background"
+                    className="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-50 grayscale group-hover:grayscale-0 transition-all duration-700"
+                  />
+
+                  {/* Layer 2: Full Image (Reveal) */}
                   <img
                     src={event.image}
                     alt={event.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-contain z-10 transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs border border-white/10 text-white font-medium">
+
+                  {/* Layer 3: Cropped Cover (Default View) - Fades out on hover */}
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="absolute inset-0 w-full h-full object-cover z-20 transition-all duration-500 group-hover:opacity-0"
+                  />
+
+                  {/* Overlay Gradient (Only visible when cover is visible) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60 z-20 transition-opacity duration-500 group-hover:opacity-0" />
+
+                  {/* Badge */}
+                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs border border-white/10 text-white font-medium z-30">
                     {event.type}
                   </div>
                 </div>
