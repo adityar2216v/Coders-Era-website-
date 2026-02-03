@@ -1,17 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ThreeDCarouselProps {
     images: string[];
     height?: string;
+    autoScrollInterval?: number;
 }
 
-export const ThreeDCarousel = ({ images, height = "400px" }: ThreeDCarouselProps) => {
+export const ThreeDCarousel = ({ images, height = "400px", autoScrollInterval = 3000 }: ThreeDCarouselProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     const rotateLeft = () => {
         setDirection(-1);
@@ -22,6 +24,13 @@ export const ThreeDCarousel = ({ images, height = "400px" }: ThreeDCarouselProps
         setDirection(1);
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     };
+
+    useEffect(() => {
+        if (!isHovered) {
+            const interval = setInterval(rotateRight, autoScrollInterval);
+            return () => clearInterval(interval);
+        }
+    }, [isHovered, currentIndex, autoScrollInterval]);
 
     const variants = {
         enter: (direction: number) => ({
@@ -54,7 +63,12 @@ export const ThreeDCarousel = ({ images, height = "400px" }: ThreeDCarouselProps
     };
 
     return (
-        <div className="relative w-full perspective-1000 flex items-center justify-center overflow-hidden py-12" style={{ height }}>
+        <div
+            className="relative w-full perspective-1000 flex items-center justify-center overflow-hidden py-12 group/carousel"
+            style={{ height }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <div className="absolute inset-0 flex items-center justify-center">
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.div
@@ -80,13 +94,13 @@ export const ThreeDCarousel = ({ images, height = "400px" }: ThreeDCarouselProps
             {/* Navigation Buttons */}
             <button
                 onClick={rotateLeft}
-                className="absolute left-4 md:left-10 z-20 p-3 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 transition-all hover:scale-110 backdrop-blur-md"
+                className="absolute left-4 md:left-10 z-20 p-3 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 transition-all hover:scale-110 backdrop-blur-md opacity-0 group-hover/carousel:opacity-100 duration-300"
             >
                 <ChevronLeft className="w-6 h-6" />
             </button>
             <button
                 onClick={rotateRight}
-                className="absolute right-4 md:right-10 z-20 p-3 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 transition-all hover:scale-110 backdrop-blur-md"
+                className="absolute right-4 md:right-10 z-20 p-3 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 transition-all hover:scale-110 backdrop-blur-md opacity-0 group-hover/carousel:opacity-100 duration-300"
             >
                 <ChevronRight className="w-6 h-6" />
             </button>

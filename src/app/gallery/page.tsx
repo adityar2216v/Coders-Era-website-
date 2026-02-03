@@ -184,72 +184,7 @@ export default function GalleryPage() {
                     />        </Container>
             </Section>
 
-            {/* Gallery Filter */}
-            <Section className="pb-8 pt-12 border-t border-white/5">
-                <Container>
-                    <div className="mb-12 text-center">
-                        <h2 className="text-3xl font-bold mb-4">All <span className="text-gradient-purple">Moments</span></h2>
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat.id}
-                                onClick={() => setActiveCategory(cat.id)}
-                                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id
-                                    ? 'bg-primary text-white shadow-lg shadow-primary/25'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
-                                    }`}
-                            >
-                                {cat.label}
-                            </button>
-                        ))}
-                    </div>
-                </Container>
-            </Section>
 
-            {/* Gallery Grid */}
-            <Section className="pb-32">
-                <Container>
-                    <motion.div
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    >
-                        <AnimatePresence mode='popLayout'>
-                            {filteredItems.map((item) => (
-                                <motion.div
-                                    layout
-                                    key={item.id}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="cursor-pointer group"
-                                    onClick={() => setSelectedImage(item)}
-                                >
-                                    <Card className="h-full bg-black/40 border-white/10 overflow-hidden relative aspect-[4/3] group-hover:border-primary/50 transition-colors duration-500">
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
-                                            <h3 className="text-xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                                {item.title}
-                                            </h3>
-                                            <p className="text-sm text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                                                {item.description}
-                                            </p>
-                                            <span className="mt-4 text-primary text-sm font-bold uppercase tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">
-                                                View Fullsize
-                                            </span>
-                                        </div>
-                                    </Card>
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                    </motion.div>
-                </Container>
-            </Section>
 
             {/* Lightbox / Modal */}
             <AnimatePresence>
