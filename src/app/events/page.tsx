@@ -235,7 +235,7 @@ export default function EventsPage() {
                   <div className="text-primary text-xs font-bold uppercase tracking-wider mb-2">{event.date}</div>
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">{event.title}</h3>
                   <p className="text-gray-400 text-sm mb-6 flex-grow">{event.description}</p>
-                  <Link href="#" className="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors mt-auto group/link">
+                  <Link href="/gallery" className="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors mt-auto group/link">
                     View Recap <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" />
                   </Link>
                 </div>
