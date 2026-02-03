@@ -1,96 +1,110 @@
 'use client';
 
-import { memo, useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const images = [
-    '/codesphere/c1.jpg',
-    '/codesphere/c2.jpg',
-    '/codesphere/c3.jpg',
-    '/codesphere/c4.jpg',
-    '/codesphere/c5.jpg',
-    '/codesphere/c6.jpg',
-    '/codesphere/c7.jpg',
-    '/codesphere/c8.JPG',
-    '/codesphere/c9.JPG',
-    '/codesphere/c10.JPG',
-];
+interface ThreeDCarouselProps {
+    images: string[];
+    height?: string;
+}
 
-export const ThreeDCarousel = () => {
-    const [activeImg, setActiveImg] = useState(0);
-    const x = useMotionValue(0);
-    const springX = useSpring(x, { stiffness: 300, damping: 30 });
+export const ThreeDCarousel = ({ images, height = "400px" }: ThreeDCarouselProps) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState(0);
 
-    // Calculate specific positions for a 3D carousel effect
-    const calculateProps = (index: number) => {
-        const offset = index - activeImg;
-        const absOffset = Math.abs(offset);
-
-        // Limits for visibility
-        if (absOffset > 2) return { opacity: 0, zIndex: 0, scale: 0, x: 0 };
-
-        return {
-            opacity: absOffset === 0 ? 1 : absOffset === 1 ? 0.6 : 0.3,
-            zIndex: 3 - absOffset,
-            scale: absOffset === 0 ? 1 : absOffset === 1 ? 0.8 : 0.6,
-            x: offset * 150, // pixel distance between cards
-            rotateY: offset * -15 // rotate cards slightly
-        };
+    const rotateLeft = () => {
+        setDirection(-1);
+        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
 
-    const handleNext = () => {
-        setActiveImg((prev) => (prev + 1) % images.length);
+    const rotateRight = () => {
+        setDirection(1);
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     };
 
-    const handlePrev = () => {
-        setActiveImg((prev) => (prev - 1 + images.length) % images.length);
+    const variants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+            scale: 0.5,
+            zIndex: 0,
+            rotateY: direction > 0 ? 45 : -45,
+        }),
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            rotateY: 0,
+            transition: {
+                duration: 0.5,
+            },
+        },
+        exit: (direction: number) => ({
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+            scale: 0.5,
+            rotateY: direction < 0 ? 45 : -45,
+            transition: {
+                duration: 0.5,
+            },
+        }),
     };
 
     return (
-        <div className="relative h-[400px] w-full flex items-center justify-center perspective-1000 overflow-hidden py-20">
-            <div className="relative w-[300px] h-[400px] md:w-[400px] md:h-[500px]">
-                {images.map((src, index) => {
-                    const props = calculateProps(index);
-
-                    // We only render active and adjacent images for strict 3D effect control manually
-                    // or use AnimatePresence. Here we map all but animate strictly.
-
-                    // Actually, a simpler way for a "smooth scroll" 3D carousel is standard absolute positioning with framer motion
-
-                    // Let's use a simpler "Coverflow" style logic
-                    return (
-                        <motion.div
-                            key={index}
-                            className="absolute top-0 left-0 w-full h-full rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl bg-black"
-                            initial={false}
-                            animate={{
-                                opacity: index === activeImg ? 1 : Math.abs(index - activeImg) <= 2 ? 0.7 - Math.abs(index - activeImg) * 0.2 : 0,
-                                x: (index - activeImg) * 200, // horizontal spacing
-                                z: Math.abs(index - activeImg) * -100, // depth
-                                scale: 1 - Math.abs(index - activeImg) * 0.1, // scaling
-                                rotateY: (index - activeImg) * -15,
-                                pointerEvents: index === activeImg ? 'auto' : 'none'
-                            }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                            style={{
-                                zIndex: 100 - Math.abs(index - activeImg),
-                                transformStyle: 'preserve-3d',
-                            }}
-                        >
-                            <img src={src} alt="Event" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                        </motion.div>
-                    );
-                })}
+        <div className="relative w-full perspective-1000 flex items-center justify-center overflow-hidden py-12" style={{ height }}>
+            <div className="absolute inset-0 flex items-center justify-center">
+                <AnimatePresence initial={false} custom={direction}>
+                    <motion.div
+                        key={currentIndex}
+                        custom={direction}
+                        variants={variants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="absolute w-[80%] md:w-[60%] lg:w-[40%] aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black"
+                    >
+                        <img
+                            src={images[currentIndex]}
+                            alt={`Slide ${currentIndex}`}
+                            className="w-full h-full object-cover"
+                        />
+                        {/* Glossy Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
+                    </motion.div>
+                </AnimatePresence>
             </div>
 
-            {/* Controls */}
-            <div className="absolute bottom-4 flex gap-4 z-50">
-                <button onClick={handlePrev} className="p-3 rounded-full bg-black/50 hover:bg-white/20 text-white backdrop-blur-md border border-white/10 transition-all">←</button>
-                <button onClick={handleNext} className="p-3 rounded-full bg-black/50 hover:bg-white/20 text-white backdrop-blur-md border border-white/10 transition-all">→</button>
-            </div>
+            {/* Navigation Buttons */}
+            <button
+                onClick={rotateLeft}
+                className="absolute left-4 md:left-10 z-20 p-3 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 transition-all hover:scale-110 backdrop-blur-md"
+            >
+                <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+                onClick={rotateRight}
+                className="absolute right-4 md:right-10 z-20 p-3 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 transition-all hover:scale-110 backdrop-blur-md"
+            >
+                <ChevronRight className="w-6 h-6" />
+            </button>
 
-            {/* Overlay Left/Right for smooth scroll trigger potentially, but buttons are safer for exact navigation */}
+            {/* Indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {images.map((_, idx) => (
+                    <button
+                        key={idx}
+                        onClick={() => {
+                            setDirection(idx > currentIndex ? 1 : -1);
+                            setCurrentIndex(idx);
+                        }}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? "bg-primary w-6" : "bg-white/30"
+                            }`}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

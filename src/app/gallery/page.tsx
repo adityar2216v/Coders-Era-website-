@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
 import { Card } from '@/components/ui/Card';
+import { TypewriterEffect } from '@/components/ui/TypewriterEffect';
+import { ThreeDCarousel } from '@/components/ui/ThreeDCarousel';
 
 // Sample data - In a real app, this would likely come from shared constants or a CMS
 const galleryItems = [
@@ -56,6 +58,11 @@ const categories = [
     { id: 'community', label: 'Community' },
 ];
 
+const codesphereWords = [
+    { text: "Event", className: "text-white" },
+    { text: "Gallery", className: "text-primary dark:text-primary" },
+];
+
 export default function GalleryPage() {
     const [activeCategory, setActiveCategory] = useState('all');
     const [selectedImage, setSelectedImage] = useState<typeof galleryItems[0] | null>(null);
@@ -72,17 +79,15 @@ export default function GalleryPage() {
                     <div className="absolute top-[20%] right-[20%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-blob" />
                 </div>
                 <Container className="relative z-10 text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-7xl font-bold mb-6"
-                    >
-                        Event <span className="text-gradient-primary">Gallery</span>
-                    </motion.h1>
+                    {/* Typewriter Heading */}
+                    <div className="mb-8 flex justify-center">
+                        <TypewriterEffect words={codesphereWords} />
+                    </div>
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
+                        transition={{ delay: 1 }}
                         className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
                     >
                         Relive the most memorable moments from our past hackathons, workshops, and summits.
@@ -90,17 +95,69 @@ export default function GalleryPage() {
                 </Container>
             </Section>
 
-            {/* Gallery Filter */}
-            <Section className="pb-8">
+            {/* Codesphere Section - 3D Carousel */}
+            <Section className="py-12 bg-white/[0.02] border-y border-white/5">
                 <Container>
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="mb-8 flex items-center gap-4"
+                    >
+                        <div className="h-12 w-1 bg-primary rounded-full" />
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">Codesphere <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">Chronicles</span></h2>
+                    </motion.div>
+
+                    {/* Duplicating image for demo purpose since we have single image per event. In real app, unique images per event. */}
+                    <ThreeDCarousel
+                        images={[
+                            '/photos/codesphere.jpeg',
+                            '/photos/hackathon.jpeg',
+                            '/photos/aditya.jpg',
+                            '/photos/logo.jpg'
+                        ]}
+                        height="500px"
+                    />
+                </Container>
+            </Section>
+
+            {/* Autonomous Minds Section - 3D Carousel */}
+            <Section className="py-24">
+                <Container>
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="mb-8 flex items-center justify-end gap-4 text-right"
+                    >
+                        <h2 className="text-3xl md:text-5xl font-bold text-white"><span className="text-primary">Autonomous</span> Minds</h2>
+                        <div className="h-12 w-1 bg-primary rounded-full" />
+                    </motion.div>
+
+                    <ThreeDCarousel
+                        images={[
+                            '/photos/autonomous Minds Launchpad.jpg',
+                            '/photos/ai.jpeg',
+                            '/photos/cys.jpeg',
+                            '/photos/cloud.jpeg'
+                        ]}
+                        height="500px"
+                    />
+                </Container>
+            </Section>
+
+            {/* Gallery Filter */}
+            <Section className="pb-8 pt-12 border-t border-white/5">
+                <Container>
+                    <div className="mb-12 text-center">
+                        <h2 className="text-3xl font-bold mb-4">All <span className="text-gradient-purple">Moments</span></h2>
+                    </div>
                     <div className="flex flex-wrap justify-center gap-4">
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id
-                                        ? 'bg-primary text-white shadow-lg shadow-primary/25'
-                                        : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                    ? 'bg-primary text-white shadow-lg shadow-primary/25'
+                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
                                     }`}
                             >
                                 {cat.label}
