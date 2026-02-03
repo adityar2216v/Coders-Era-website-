@@ -112,6 +112,7 @@ export default function GalleryPage() {
 
                     <ThreeDCarousel
                         images={[
+                            '/photos/codesphere.jpeg',
                             '/codesphere/c1.jpg',
                             '/codesphere/c2.jpg',
                             '/codesphere/c3.jpg',
@@ -171,6 +172,7 @@ export default function GalleryPage() {
 
                     <ThreeDCarousel
                         images={[
+                            '/photos/autonomous Minds Launchpad.jpg',
                             '/autonomous minds/a1.jpg',
                             '/autonomous minds/a2.jpg',
                             '/autonomous minds/a3.jpg',
@@ -179,8 +181,7 @@ export default function GalleryPage() {
                             '/autonomous minds/a6.jpg',
                         ]}
                         height="500px"
-                    />
-                </Container>
+                    />        </Container>
             </Section>
 
             {/* Gallery Filter */}
