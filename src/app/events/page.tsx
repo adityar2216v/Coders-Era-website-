@@ -150,11 +150,12 @@ export default function EventsPage() {
                     Registration Open
                   </div>
 
-                  <h3 className="text-3xl md:text-5xl font-bold mb-4 text-white leading-tight">
-                    Synaps & Syntax
-                  </h3>
-                  <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                    Unleash your coding potential in our latest challenge. Join us for a deep dive into algorithmic mastery and system design.
+                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    Synapse & <span className="text-secondary">Syntax</span>
+                  </h2>
+                  <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+                    A specialized workshop exploring the intersection of IoT and Biotech.
+                    Join us for hands-on sessions, expert talks, and live demonstrations.
                   </p>
 
                   <div className="flex flex-wrap gap-4 mb-6">
@@ -172,9 +173,16 @@ export default function EventsPage() {
                     </p>
                   </div>
 
-                  <Button size="lg" className="w-fit">
-                    Register Now <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSetSrV3-IEeOlwCHwtsHMjvXaWuRkNXvm4LtRiwual96mVnQw/viewform?usp=publish-editor"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-all hover:scale-105"
+                    >
+                      Register Now <ArrowRight className="ml-2 w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </Card>
