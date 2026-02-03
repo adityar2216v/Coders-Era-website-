@@ -114,65 +114,67 @@ export default function EventsPage() {
         </Container>
       </Section>
 
-      {/* Events Section */}
+      {/* Upcoming Event - Synapse & Syntax */}
       <Section>
         <Container>
-          {/* Filter Buttons */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-20"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {['all', 'hackathon', 'webinar', 'workshop', 'meetup'].map((type) => (
-              <Button
-                key={type}
-                variant={filter === type ? 'primary' : 'outline'}
-                onClick={() => setFilter(type)}
-                className="capitalize rounded-full px-6"
-              >
-                {type}
-              </Button>
-            ))}
-          </motion.div>
-
-          {/* Events Grid / Coming Soon */}
-          {/* Events Grid / Coming Soon */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             className="max-w-5xl mx-auto"
           >
-            <Card hoverEffect className="w-full bg-black/40 p-16 md:p-24 text-center border-white/10 relative overflow-hidden group">
-              {/* Animated background elements */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent animate-pulse delay-700" />
-              <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Upcoming <span className="text-gradient-primary">Event</span></h2>
+            </div>
 
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-20 h-20 mb-8 bg-white/5 rounded-full border border-white/10 shadow-inner">
-                  <span className="text-4xl">🚀</span>
+            <Card hoverEffect className="w-full bg-black/40 border-white/10 relative overflow-hidden group rounded-3xl p-0">
+              <div className="flex flex-col md:flex-row h-full">
+                {/* Image Section */}
+                <div className="md:w-1/2 relative min-h-[300px] md:min-h-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent z-10" />
+                  {/* Using standard img tag temporarily if Next/Image has specific config needs or just standard img for simplicity with local files as requested by user to be safe with paths */}
+                  {/* Actually using next/image is better but requires width/height or fill. Using fill. */}
+                  <img
+                    src="/photos/Synapse & Syntax.jpg"
+                    alt="Synapse & Syntax"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <h3 className="text-6xl md:text-8xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-600 drop-shadow-sm tracking-tighter uppercase relative z-20">
-                  Coming Soon
-                </h3>
-                <p className="text-xl text-primary/80 font-light tracking-wide max-w-2xl mx-auto mb-10 relative z-20">
-                  We are curating the next generation of tech events. Stay tuned for something extraordinary.
-                </p>
 
-                <div className="flex justify-center gap-2">
-                  <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-                  <span className="w-2 h-2 bg-secondary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                  <span className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
+                {/* Content Section */}
+                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative z-20">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-20" />
+
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider w-fit mb-6">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    Registration Open
+                  </div>
+
+                  <h3 className="text-3xl md:text-5xl font-bold mb-4 text-white leading-tight">
+                    Synaps & Syntax
+                  </h3>
+                  <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                    Unleash your coding potential in our latest challenge. Join us for a deep dive into algorithmic mastery and system design.
+                  </p>
+
+                  <div className="flex flex-wrap gap-4 mb-8">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <span className="bg-white/10 p-2 rounded-lg">📅</span> Date: TBA
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <span className="bg-white/10 p-2 rounded-lg">📍</span> Location: TBA
+                    </div>
+                  </div>
+
+                  <Button size="lg" className="w-fit">
+                    Register Now <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
                 </div>
               </div>
             </Card>
           </motion.div>
-
         </Container>
       </Section>
-
       {/* Past Events Section */}
       <Section className="py-24 bg-black/20 border-t border-white/5">
         <Container>
@@ -186,43 +188,49 @@ export default function EventsPage() {
             <p className="text-muted-foreground max-w-2xl mx-auto">Explore our previous gatherings and the impact we've created.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "AI Revolution Summit",
-                date: "Dec 15, 2023",
-                type: "Webinar",
-                description: "Exploring the future of generative AI with industry experts."
-              },
-              {
-                title: "Winter Hackathon",
-                date: "Oct 10, 2023",
+                title: "Codesphere",
+                date: "1st Event",
                 type: "Hackathon",
-                description: "48 hours of building solutions for real-world problems."
+                description: "Our inaugural coding sprint that started it all.",
+                image: "/photos/codesphere.jpeg"
               },
               {
-                title: "React Native Workshop",
-                date: "Sep 20, 2023",
-                type: "Workshop",
-                description: "Building cross-platform mobile apps efficiently."
+                title: "The Code Cascade",
+                date: "2nd Event",
+                type: "Hackathon",
+                description: "A deep dive into modern development frameworks.",
+                image: "/photos/hackathon.jpeg"
+              },
+              {
+                title: "Autonomous Minds Launchpad",
+                date: "3rd Event",
+                type: "Summit",
+                description: "Launching the next generation of AI innovators.",
+                image: "/photos/autonomous Minds Launchpad.jpg"
               }
             ].map((event, i) => (
-              <Card key={i} hoverEffect className="p-0 overflow-hidden group">
-                <div className="h-48 bg-gradient-to-br from-gray-800 to-black relative">
-                  {/* Placeholder for event image */}
-                  <div className="absolute inset-0 flex items-center justify-center text-4xl opacity-20 group-hover:opacity-40 transition-opacity">
-                    📅
-                  </div>
+              <Card key={i} hoverEffect className="p-0 overflow-hidden group flex flex-col h-full rounded-2xl border-white/10">
+                <div className="relative aspect-video w-full overflow-hidden">
+                  {/* Using simple img tag to avoid Next.js Image config issues with external/local paths dynamically if unconfigured */}
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
                   <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs border border-white/10 text-white font-medium">
                     {event.type}
                   </div>
                 </div>
-                <div className="p-6">
-                  <div className="text-primary text-sm font-semibold mb-2">{event.date}</div>
-                  <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4">{event.description}</p>
-                  <Link href="#" className="text-sm font-medium text-white hover:text-primary transition-colors flex items-center">
-                    View Recap <ArrowRight className="w-4 h-4 ml-1" />
+                <div className="p-6 flex flex-col flex-grow bg-white/[0.02]">
+                  <div className="text-primary text-xs font-bold uppercase tracking-wider mb-2">{event.date}</div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">{event.title}</h3>
+                  <p className="text-gray-400 text-sm mb-6 flex-grow">{event.description}</p>
+                  <Link href="#" className="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors mt-auto group/link">
+                    View Recap <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </Card>
@@ -232,7 +240,7 @@ export default function EventsPage() {
       </Section>
 
       {/* Call to Action */}
-      <Section className="py-24 border-t border-white/5 bg-white/[0.01]">
+      < Section className="py-24 border-t border-white/5 bg-white/[0.01]" >
         <Container className="text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -257,7 +265,7 @@ export default function EventsPage() {
             </Button>
           </Link>
         </Container>
-      </Section>
-    </div>
+      </Section >
+    </div >
   );
 }
