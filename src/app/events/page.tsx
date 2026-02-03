@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Link from 'next/link'; // Added this import
+import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
@@ -132,12 +133,12 @@ export default function EventsPage() {
                 {/* Image Section */}
                 <div className="md:w-1/2 relative min-h-[300px] md:min-h-full">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent z-10" />
-                  {/* Using standard img tag temporarily if Next/Image has specific config needs or just standard img for simplicity with local files as requested by user to be safe with paths */}
-                  {/* Actually using next/image is better but requires width/height or fill. Using fill. */}
-                  <img
+                  {/* Use Next.js Image for optimization */}
+                  <Image
                     src="/photos/Synapse & Syntax.jpg"
                     alt="Synapse & Syntax"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
 
@@ -228,11 +229,11 @@ export default function EventsPage() {
             ].map((event, i) => (
               <Card key={i} hoverEffect className="p-0 overflow-hidden group flex flex-col h-full rounded-2xl border-white/10">
                 <div className="relative aspect-video w-full overflow-hidden">
-                  {/* Using simple img tag to avoid Next.js Image config issues with external/local paths dynamically if unconfigured */}
-                  <img
+                  <Image
                     src={event.image}
                     alt={event.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
                   <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs border border-white/10 text-white font-medium">

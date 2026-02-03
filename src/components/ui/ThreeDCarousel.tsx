@@ -68,7 +68,6 @@ export const ThreeDCarousel = ({ images, height = "400px", autoScrollInterval = 
             rotateY: rotateY,
             zIndex: zIndex,
             opacity: opacity,
-            filter: isCenter ? 'blur(0px)' : 'blur(2px)',
         };
     };
 
@@ -95,12 +94,12 @@ export const ThreeDCarousel = ({ images, height = "400px", autoScrollInterval = 
                                     rotateY: style.rotateY,
                                     zIndex: style.zIndex,
                                     opacity: style.opacity,
-                                    filter: style.filter,
                                 }}
                                 transition={{
                                     duration: 0.5,
                                     ease: "easeInOut"
                                 }}
+                                style={{ willChange: 'transform, opacity' }}
                                 className="absolute w-[70%] md:w-[60%] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black cursor-pointer"
                                 onClick={() => setCurrentIndex(idx)}
                             >
