@@ -11,7 +11,6 @@ import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { LogoTicker } from '@/components/common/LogoTicker';
-import { AnimatedNumber } from '@/components/ui/AnimatedNumber';
 import { Testimonials } from '@/components/common/Testimonials';
 
 export default function Home() {
@@ -125,26 +124,7 @@ export default function Home() {
           {/* PARTNERS TICKER */}
           <LogoTicker />
 
-          {/* STATS SECTION */}
-          <Section className="py-12 border-y border-white/5 bg-white/[0.02]">
-            <Container>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                {[
-                  { label: "Active Members", value: 5000, suffix: "+" },
-                  { label: "Daily Messages", value: 12000, suffix: "+" },
-                  { label: "Events Hosted", value: 151, suffix: "+" },
-                  { label: "Countries", value: 30, suffix: "+" },
-                ].map((stat, i) => (
-                  <div key={i}>
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-1">
-                      <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                    </div>
-                    <div className="text-sm text-gray-500 uppercase tracking-wider">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </Container>
-          </Section>
+
 
           {/* FEATURES GRID */}
           <Section>
