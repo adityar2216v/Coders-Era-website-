@@ -6,7 +6,7 @@ interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
-    ({ className, fullWidth = false, children, ...props }, ref) => {
+    ({ className, children, ...props }, ref) => {
         return (
             <section
                 ref={ref}

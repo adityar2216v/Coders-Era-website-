@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import { cn } from "@/lib/utils";
 
 interface ThreeDCarouselProps {
@@ -45,7 +46,6 @@ export const ThreeDCarousel = ({ images, height = "400px", autoScrollInterval = 
         // Determine layout properties based on distance
         const isCenter = dist === 0;
         const isLeft = dist < 0;
-        const isRight = dist > 0;
 
         // Only show immediate neighbors and center for performance/cleanliness, or fade out others
         const absDist = Math.abs(dist);
@@ -54,7 +54,6 @@ export const ThreeDCarousel = ({ images, height = "400px", autoScrollInterval = 
         if (!isVisible) return { display: 'none' };
 
         // 3D Transforms
-        const xOffset = isCenter ? 0 : isLeft ? '-60%' : '60%';
         const scale = isCenter ? 1 : 0.85 - (absDist * 0.1);
         const rotateY = isCenter ? 0 : isLeft ? 25 : -25;
         const zIndex = 10 - absDist;
@@ -105,10 +104,11 @@ export const ThreeDCarousel = ({ images, height = "400px", autoScrollInterval = 
                                 className="absolute w-[70%] md:w-[60%] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black cursor-pointer"
                                 onClick={() => setCurrentIndex(idx)}
                             >
-                                <img
+                                <Image
                                     src={image}
                                     alt={`Slide ${idx}`}
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
                                 />
                                 {/* Glossy Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
