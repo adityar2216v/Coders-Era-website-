@@ -49,12 +49,13 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <Image
-              src="/codersera-logo.png"
+              src="/codersera-logo-original.jpg"
               alt="CodersEra Logo"
-              width={180}
-              height={50}
-              className="h-12 w-auto object-contain"
+              width={60}
+              height={60}
+              className="h-10 w-auto object-contain rounded-full"
             />
+            <span className="font-bold text-xl tracking-tight hidden sm:block">CodersEra</span>
           </Link>
 
           {/* Desktop Nav */}

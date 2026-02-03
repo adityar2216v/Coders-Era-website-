@@ -27,12 +27,13 @@ export default function Footer() {
           <div className="md:col-span-4 lg:col-span-5">
             <Link href="/" className="flex items-center gap-2 mb-6">
               <Image
-                src="/codersera-logo.png"
+                src="/codersera-logo-original.jpg"
                 alt="CodersEra Logo"
-                width={180}
-                height={50}
-                className="h-12 w-auto object-contain"
+                width={60}
+                height={60}
+                className="h-10 w-auto object-contain rounded-full"
               />
+              <span className="font-bold text-xl tracking-tight text-white">CodersEra</span>
             </Link>
             <p className="text-gray-400 mb-8 max-w-sm leading-relaxed text-lg font-light">
               Where developers become innovators. Join the community building the future of tech, one line of code at a time.
