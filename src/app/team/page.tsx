@@ -82,7 +82,7 @@ const coreMembers: TeamMember[] = [
   { img: '/photos/KARTIKEY.webp', name: 'KARTIKEY', position: 'DS LEAD', instagram: 'https://www.instagram.com/_kartiike_/' },
   { img: '/photos/KISHAN.jpg', name: 'KISHAN', position: 'IT LEAD', instagram: '#' },
   { img: '/photos/hardy.png', name: 'HRIDYANSH', position: 'TECH-LEAD', instagram: 'https://www.instagram.com/__hridayansh/' },
-  { img: '/photos/AYUSH.jpg', name: 'AYUSHI', position: 'CYS LEAD', instagram: 'https://www.instagram.com/aayush_p.s/' },
+  { img: '/photos/AYUSH.jpg', name: 'AYUSH', position: 'CYS LEAD', instagram: 'https://www.instagram.com/aayush_p.s/' },
   { img: '/photos/VEER.jpg', name: 'VIJENDRA', position: 'CSE LEAD', instagram: 'https://www.instagram.com/mrveer_official/' },
   { img: '/photos/van.jpg', name: 'VANSHIKA TYAGI', position: 'IOT LEAD', instagram: 'https://www.instagram.com/vanshika_736/' },
   { img: '/photos/simmi.jpg', name: 'SIMMI SINGH', position: 'IOT LEAD', linkedin: 'https://www.linkedin.com/in/simmisingh1?trk=contact-info', instagram: 'https://www.instagram.com/simmiiii_singh?igsh=MndlaG85Zno2Nngy' },
