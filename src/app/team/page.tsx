@@ -143,7 +143,7 @@ export default function TeamPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-8xl font-bold mb-6 tracking-tight"
           >
-            OUR <span className="text-gradient-purple">CREW</span>
+            OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#FB7185]">CREW</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

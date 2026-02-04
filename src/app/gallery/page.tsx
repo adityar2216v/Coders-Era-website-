@@ -167,10 +167,10 @@ export default function GalleryPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         className="mb-8 flex items-center gap-4"
                     >
-                        <div className="h-12 w-1 bg-purple-500 rounded-full" />
+                        <div className="h-12 w-1 bg-[#22D3EE] rounded-full" />
                         <div>
-                            <span className="text-purple-500 text-sm font-bold tracking-wider uppercase block mb-1">3rd Event</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white"><span className="text-purple-500">Autonomous</span> Minds</h2>
+                            <span className="text-[#22D3EE] text-sm font-bold tracking-wider uppercase block mb-1">3rd Event</span>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white"><span className="text-[#22D3EE]">Autonomous</span> Minds</h2>
                         </div>
                     </motion.div>
 

@@ -26,7 +26,7 @@ const events = [
 const Cards = () => {
   return (
     <section id='Events' className="w-full min-h-[60vh] py-16 px-2 md:px-8 flex flex-col items-center justify-center bg-white/10">
-      <h2 className="text-2xl md:text-5xl font-bold text-white text-center mb-12 bg-black/60 hover:shadow-white/30 shadow-lg transition-all ease-in-out p-5 px-20 rounded-xl">Upcoming Events</h2>
+      <h2 className="text-2xl md:text-5xl font-bold text-white text-center mb-12 bg-black/60 hover:shadow-white/30 shadow-lg transition-all ease-in-out p-5 px-20 rounded-xl">Upcoming <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#FB7185]">Events</span></h2>
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-8">
         {events.map((event, idx) => (
           <div

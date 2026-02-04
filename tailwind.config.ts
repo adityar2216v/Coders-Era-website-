@@ -19,6 +19,13 @@ const config: Config = {
                     DEFAULT: "var(--secondary)",
                     foreground: "var(--secondary-foreground)",
                 },
+                "coders-midnight": "#0B1220",
+                "era-blue": "#13203A",
+                "quantum-cyan": "#22D3EE",
+                "signal-coral": "#FB7185",
+                "soft-cloud": "#F1F5F9",
+                "pure-intent": "#E2E8F0",
+                "steel-grey": "#94A3B8",
             },
             fontFamily: {
                 sans: ["var(--font-inter)"],

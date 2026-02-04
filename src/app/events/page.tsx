@@ -102,13 +102,13 @@ export default function EventsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-bold mb-6"
           >
-            Upcoming <span className="text-gradient-purple">Events</span>
+            Upcoming <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#FB7185]">Events</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-[#94A3B8] max-w-3xl mx-auto"
           >
             Join us for exciting hackathons, webinars, workshops, and networking events to enhance your skills and expand your network.
           </motion.p>
@@ -125,14 +125,14 @@ export default function EventsPage() {
             className="max-w-5xl mx-auto"
           >
             <div className="mb-12 text-center">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">Upcoming <span className="text-gradient-primary">Event</span></h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Upcoming <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#FB7185]">Event</span></h2>
             </div>
 
-            <Card hoverEffect className="w-full bg-black/40 border-white/10 relative overflow-hidden group rounded-3xl p-0">
+            <Card hoverEffect className="w-full bg-[#0B1220]/40 border-white/10 relative overflow-hidden group rounded-3xl p-0">
               <div className="flex flex-col md:flex-row h-full">
                 {/* Image Section */}
                 <div className="md:w-1/2 relative min-h-[300px] md:min-h-full">
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220]/80 to-transparent z-10" />
                   {/* Use Next.js Image for optimization */}
                   <Image
                     src="/photos/Synapse & Syntax.jpg"
@@ -144,26 +144,26 @@ export default function EventsPage() {
 
                 {/* Content Section */}
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative z-20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#22D3EE]/10 to-transparent opacity-20 pointer-events-none" />
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider w-fit mb-6">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#22D3EE]/30 bg-[#22D3EE]/10 text-[#22D3EE] text-xs font-bold uppercase tracking-wider w-fit mb-6">
+                    <span className="w-2 h-2 rounded-full bg-[#22D3EE] animate-pulse" />
                     Registration Open
                   </div>
 
                   <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                    Synapse & <span className="text-secondary">Syntax</span>
+                    Synapse & <span className="text-[#FB7185]">Syntax</span>
                   </h2>
-                  <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+                  <p className="text-lg text-[#94A3B8] mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
                     A specialized workshop exploring the intersection of IoT and Biotech.
                     Join us for hands-on sessions, expert talks, and live demonstrations.
                   </p>
 
                   <div className="flex flex-wrap gap-4 mb-6">
-                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <div className="flex items-center gap-2 text-sm text-[#94A3B8]">
                       <span className="bg-white/10 p-2 rounded-lg">📅</span> Date: 7th Feb 2026
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <div className="flex items-center gap-2 text-sm text-[#94A3B8]">
                       <span className="bg-white/10 p-2 rounded-lg">📍</span> Location: Plot 15, NIET
                     </div>
                   </div>
@@ -179,7 +179,7 @@ export default function EventsPage() {
                       href="https://docs.google.com/forms/d/e/1FAIpQLSetSrV3-IEeOlwCHwtsHMjvXaWuRkNXvm4LtRiwual96mVnQw/viewform?usp=publish-editor"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative z-10 inline-flex items-center justify-center px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-all hover:scale-105"
+                      className="relative z-10 inline-flex items-center justify-center px-8 py-3 rounded-md bg-[#22D3EE] text-[#0B1220] font-medium hover:bg-[#FB7185] hover:text-white transition-all hover:scale-105"
                     >
                       Register Now <ArrowRight className="ml-2 w-4 h-4" />
                     </a>
@@ -191,7 +191,7 @@ export default function EventsPage() {
         </Container>
       </Section>
       {/* Past Events Section */}
-      <Section className="py-24 bg-black/20 border-t border-white/5">
+      <Section className="py-24 bg-[#0B1220]/20 border-t border-white/5">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -199,7 +199,7 @@ export default function EventsPage() {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Past <span className="text-gradient-purple">Events</span></h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Past <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#FB7185]">Events</span></h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">Explore our previous gatherings and the impact we've created.</p>
           </motion.div>
 

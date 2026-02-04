@@ -22,7 +22,7 @@ export default function CommunityPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Our <span className="text-gradient-purple">Community</span>
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#FB7185]">Community</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
               Join a thriving network of developers, designers, and tech enthusiasts who share knowledge, collaborate on projects, and grow together.
