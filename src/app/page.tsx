@@ -34,8 +34,8 @@ export default function Home() {
           <Section className="pt-32 pb-20 md:pt-48 md:pb-32 overflow-visible">
             {/* Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-              <div className="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-blob" />
-              <div className="absolute bottom-[-20%] right-[20%] w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[120px] animate-blob animation-delay-2000" />
+              <div className="absolute top-[-10%] left-[10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-primary/20 rounded-full blur-[60px] md:blur-[120px] animate-blob" />
+              <div className="absolute bottom-[-10%] right-[10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-secondary/20 rounded-full blur-[60px] md:blur-[120px] animate-blob animation-delay-2000" />
             </div>
 
             <Container className="relative z-10 text-center">
@@ -96,7 +96,7 @@ export default function Home() {
                 className="mt-20 relative mx-auto max-w-5xl"
                 style={{ perspective: "1000px" }}
               >
-                <div className="relative rounded-xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl overflow-hidden aspect-video group">
+                <div className="relative rounded-xl border border-white/10 bg-black/40 backdrop-blur-md md:backdrop-blur-xl shadow-2xl overflow-hidden aspect-[4/3] md:aspect-video group">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
 
                   {/* Mock Interface */}
@@ -104,16 +104,16 @@ export default function Home() {
                     <div className="w-3 h-3 rounded-full bg-red-500/50" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
                     <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                    <div className="ml-4 w-40 h-4 rounded-full bg-white/5" />
+                    <div className="ml-4 w-40 h-4 rounded-full bg-white/5 hidden sm:block" />
                   </div>
 
-                  <div className="p-12 flex items-center justify-center h-full">
+                  <div className="p-6 md:p-12 flex items-center justify-center h-full">
                     <div className="text-center">
-                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-primary to-purple-600 mx-auto mb-6 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
-                        <Code2 className="w-10 h-10 text-white" />
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-primary to-purple-600 mx-auto mb-4 md:mb-6 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
+                        <Code2 className="w-8 h-8 md:w-10 md:h-10 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">System Operational</h3>
-                      <p className="text-gray-400">Welcome to Generation Next</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">System Operational</h3>
+                      <p className="text-sm md:text-base text-gray-400">Welcome to Generation Next</p>
                     </div>
                   </div>
                 </div>
