@@ -71,7 +71,7 @@ export default function Footer() {
               <ul className="space-y-4">
                 <li><Link href="/community" className="text-gray-400 hover:text-primary transition-colors">Community</Link></li>
                 <li><Link href="/blog" className="text-gray-500 cursor-not-allowed hover:text-gray-500">Blog <span className="text-xs bg-white/10 px-2 py-0.5 rounded ml-2">Soon</span></Link></li>
-                <li><Link href="/guides" className="text-gray-500 cursor-not-allowed hover:text-gray-500">Guides <span className="text-xs bg-white/10 px-2 py-0.5 rounded ml-2">Soon</span></Link></li>
+                <li><Link href="#" className="text-gray-500 cursor-not-allowed hover:text-gray-500">Guides <span className="text-xs bg-white/10 px-2 py-0.5 rounded ml-2">Soon</span></Link></li>
               </ul>
             </div>
 

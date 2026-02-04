@@ -87,8 +87,8 @@ const coreMembers: TeamMember[] = [
   { img: '/photos/van.jpg', name: 'VANSHIKA TYAGI', position: 'IOT LEAD', instagram: 'https://www.instagram.com/vanshika_736/' },
   { img: '/photos/simmi.jpg', name: 'SIMMI SINGH', position: 'IOT LEAD', linkedin: 'https://www.linkedin.com/in/simmisingh1?trk=contact-info', instagram: 'https://www.instagram.com/simmiiii_singh?igsh=MndlaG85Zno2Nngy' },
   { img: '/photos/SRISHTI.jpg', name: 'SRISHTI', position: 'REACH TEAM', instagram: 'https://www.instagram.com/srishtiii_kumari/' },
-  { img: '/photos/anshika.jpg', name: 'ANSHIKA MISHRA', position: 'MEDIA TEAM', instagram: '#' },
-  { img: '/photos/kavya.jpg', name: 'KAVYA PANT', position: 'MEDIA TEAM', instagram: '#' }
+  { img: '/photos/ANSHIKA.jpg', name: 'ANSHIKA MISHRA', position: 'MEDIA TEAM', instagram: '#' },
+  { img: '/photos/KAVYA.jpg', name: 'KAVYA PANT', position: 'MEDIA TEAM', instagram: '#' }
 ].map(member => {
   if (member.img && !member.img.startsWith('/photos/')) {
     member.img = `/photos/${member.img}`;
