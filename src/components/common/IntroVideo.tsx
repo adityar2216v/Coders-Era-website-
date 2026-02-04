@@ -20,7 +20,8 @@ export function IntroVideo({ onComplete }: IntroVideoProps) {
                 // 1. Try playing unmuted (ideal)
                 await video.play();
             } catch (err) {
-                console.log("Autoplay blocked, falling back to muted:", err);
+                // Autoplay blocked (expected behavior in most browsers), falling back to muted
+                // console.debug("Autoplay blocked, falling back to muted");
                 // 2. Play muted (guaranteed to work)
                 video.muted = true;
                 try {
