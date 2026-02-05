@@ -96,24 +96,114 @@ export default function Home() {
                 className="mt-20 relative mx-auto max-w-5xl"
                 style={{ perspective: "1000px" }}
               >
-                <div className="relative rounded-xl border border-white/10 bg-black/40 backdrop-blur-md md:backdrop-blur-xl shadow-2xl overflow-hidden aspect-[4/3] md:aspect-video group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
+                <div className="relative rounded-xl border border-white/10 bg-[#0B1220]/90 backdrop-blur-md md:backdrop-blur-xl shadow-2xl overflow-hidden aspect-[4/3] md:aspect-video group font-mono text-left">
+                  <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:32px_32px] pointer-events-none" />
 
-                  {/* Mock Interface */}
-                  <div className="absolute top-0 w-full h-8 bg-white/5 border-b border-white/5 flex items-center px-4 gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                    <div className="ml-4 w-40 h-4 rounded-full bg-white/5 hidden sm:block" />
+                  {/* Header with macOS style controls and Tabs */}
+                  <div className="absolute top-0 w-full bg-[#13203A] border-b border-white/5 flex flex-col z-20">
+                    <div className="h-8 flex items-center px-4 gap-2">
+                      <div className="flex gap-2 group/controls">
+                        <div className="w-3 h-3 rounded-full bg-[#FF5F56] group-hover/controls:brightness-110 transition-all" />
+                        <div className="w-3 h-3 rounded-full bg-[#FFBD2E] group-hover/controls:brightness-110 transition-all" />
+                        <div className="w-3 h-3 rounded-full bg-[#27C93F] group-hover/controls:brightness-110 transition-all" />
+                      </div>
+                      <div className="flex-1 text-center text-[10px] md:text-xs text-gray-500 font-medium font-sans tracking-wide">codersera-terminal — -zsh — 80x24</div>
+                    </div>
+
+                    {/* Tab Bar */}
+                    <div className="flex text-xs bg-[#0B1220]">
+                      <div className="px-4 py-2 bg-[#1E293B] text-white border-t-2 border-primary border-r border-white/5 flex items-center gap-2">
+                        <span className="text-blue-400">#</span> terminal.sh
+                      </div>
+                      <div className="px-4 py-2 text-gray-500 border-r border-white/5 flex items-center gap-2 hover:bg-white/5 hover:text-gray-300 transition-colors cursor-pointer">
+                        <span className="text-yellow-500">JS</span> welcome.js
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="p-6 md:p-12 flex items-center justify-center h-full">
-                    <div className="text-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-primary to-purple-600 mx-auto mb-4 md:mb-6 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
-                        <Code2 className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  {/* Main Content Area with Line Numbers */}
+                  <div className="absolute top-[60px] inset-x-0 bottom-8 overflow-hidden flex">
+                    {/* Line Numbers */}
+                    <div className="w-10 md:w-12 bg-[#0B1220] border-r border-white/5 text-right py-4 px-2 select-none text-gray-700 text-xs md:text-sm leading-6 z-10 hidden sm:block">
+                      {Array.from({ length: 20 }).map((_, i) => (
+                        <div key={i}>{i + 1}</div>
+                      ))}
+                    </div>
+
+                    {/* Terminal Content */}
+                    <div className="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar relative">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 text-white/30 text-xs">
+                          <span>Last login: Today on ttys000</span>
+                        </div>
+
+                        {/* Command Entry */}
+                        <div className="flex flex-wrap gap-2 text-base md:text-lg items-center group/cmd">
+                          <span className="text-pink-500 font-bold">➜</span>
+                          <span className="text-cyan-400 font-bold">~</span>
+                          <span className="text-green-400 font-semibold typing-effect">./init_codersera.sh --verbose</span>
+                        </div>
+
+                        {/* Execution Logs */}
+                        <div className="space-y-1 pl-4 border-l-2 border-white/5 ml-1">
+                          <div className="text-gray-500 text-xs md:text-sm animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards', opacity: 0 }}>
+                            <span className="text-blue-500">[INFO]</span> Loading core modules...
+                          </div>
+                          <div className="text-gray-500 text-xs md:text-sm animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'forwards', opacity: 0 }}>
+                            <span className="text-blue-500">[INFO]</span> Initializing DevEnvironment v2.4
+                          </div>
+                          <div className="text-white text-sm md:text-base py-2 flex items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards', opacity: 0 }}>
+                            <span className="text-emerald-400 text-lg">✔</span>
+                            <span>System Ready. Welcome to <span className="text-primary font-bold tracking-wide">CodersEra</span></span>
+                          </div>
+                        </div>
+
+                        {/* Interactive Menu as "Output" */}
+                        <div className="space-y-2 pt-2">
+                          {[
+                            { text: "Connect with developers", delay: '0.8s', color: "bg-blue-500" },
+                            { text: "Learn new technologies", delay: '1s', color: "bg-purple-500" },
+                            { text: "Build amazing projects", delay: '1.2s', color: "bg-orange-500" },
+                            { text: "Join our community", delay: '1.4s', color: "bg-green-500" }
+                          ].map((item, i) => (
+                            <div
+                              key={i}
+                              className="flex items-center gap-3 text-sm md:text-base text-gray-300 hover:text-white transition-all cursor-pointer group/item opacity-0 animate-fade-in-up pl-2 border-l border-transparent hover:border-white/20 hover:bg-white/5 rounded-r px-2 py-1 mx-[-0.5rem]"
+                              style={{ animationDelay: item.delay, animationFillMode: 'forwards' }}
+                            >
+                              <span className="text-white/20 select-none font-mono">›</span>
+                              <span className={`w-1.5 h-1.5 rounded-full ${item.color} group-hover/item:scale-150 group-hover/item:shadow-[0_0_8px_currentColor] transition-all`} />
+                              <span className="group-hover/item:translate-x-1 transition-transform font-medium">{item.text}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Blinking Cursor prompt at bottom */}
+                        <div className="pt-4 flex gap-2 text-base md:text-lg items-center opacity-0 animate-fade-in" style={{ animationDelay: '2s', animationFillMode: 'forwards' }}>
+                          <span className="text-pink-500 font-bold">➜</span>
+                          <span className="text-cyan-400 font-bold">~</span>
+                          <span className="w-2.5 h-5 bg-white/50 animate-pulse block" />
+                        </div>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">System Operational</h3>
-                      <p className="text-sm md:text-base text-gray-400">Welcome to Generation Next</p>
+
+                      {/* Background Decoration */}
+                      <div className="absolute top-4 right-4 text-[10px] text-green-500/20 font-mono text-right pointer-events-none select-none">
+                        <div>CPU: 12%</div>
+                        <div>MEM: 4.2GB</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status Bar */}
+                  <div className="absolute bottom-0 w-full h-8 bg-[#13203A] border-t border-white/5 flex items-center px-4 justify-between text-[10px] md:text-xs text-gray-500 select-none z-20">
+                    <div className="flex gap-4 items-center">
+                      <span className="flex items-center gap-1.5 text-blue-400"><div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" /> ONLINE</span>
+                      <span className="hidden sm:inline">MAIN BRANCH</span>
+                    </div>
+                    <div className="flex gap-4 font-mono">
+                      <span>UTF-8</span>
+                      <span className="hidden sm:inline">TYPE: BASH</span>
+                      <span>V 2.0.4</span>
                     </div>
                   </div>
                 </div>
